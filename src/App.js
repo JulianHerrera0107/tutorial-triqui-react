@@ -32,7 +32,7 @@ export default function Board() {
   if (winner) {
     status = `El Ganador es ${winner}`;
   } else {
-    status = `Siguiente jugador: "${xIsNext ? X : O}"`;
+    status = `Siguiente jugador: "${xIsNext ? "X" : "O"}"`;
   }
 
   return (
