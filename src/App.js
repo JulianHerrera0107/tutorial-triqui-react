@@ -1,42 +1,41 @@
 import { useState } from "react";
 
-function Square() {
-  const [value, setValue] = useState(null); //Se reemplaza Value para llamar una variable con useState
-
-  function handleClick(){
-    setValue('X'); //Agregar el componente setValue al momento de hacer clic
-    console.log('Hiciste click'); //Componente interactivo
-  }
-  /* componente Square se le puede pasar un objeto llamado value*/
-  /* Creamos un componente Square para editar simultaneamente los elementos*/
+function Square({ value, onSquareClick }) {
   return (
-    <button 
-      className="square"
-      onClick={handleClick}
-    >
+    <button className="square" onClick={onSquareClick}>
       {value}
-      </button>
-  ); //Utilizar las {} para llamar el componente
+    </button>
+  );//Utilizar las {} para llamar el componente
 }
+
 export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i) { //Creación de un Closure para la función handleClick
+    const nextSquares = squares.slice();
+    nextSquares[i] = "X";
+    setSquares(nextSquares);
+  }
+
   return (
     <>
     /*Utilzamos Fragmentos (<> </>); para agregar más de un elemento JSX*/
       <div className="board-row">
         /* Si queremos dividir en secciones diferentes los elementos utilizamos un Div con estilos CSS */
-        <Square /> //Componente value en square asignando un valor - Se cambia el prop por useState
-        <Square />
-        <Square />
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} /> 
+        //Componente value en square asignando un valor - Se cambia el prop por useState
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} /> 
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </>
   );
