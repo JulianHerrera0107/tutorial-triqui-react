@@ -60,7 +60,7 @@ export default function Board() {
   );
 }
 function calcularGanador(squares){
-  const lines = [
+  const lines = [ //Arreglo de las posibles resultados
     [0, 1, 2], //Gana en superior horizontal
     [3, 4, 5], //Gana en centro horizontal
     [6, 7, 8], //Gana en bajo horizontal
@@ -70,8 +70,8 @@ function calcularGanador(squares){
     [0, 4, 8], //Gana en diagonal izquierda
     [2, 4, 6], //Gana en diagonal derecha
   ];
-  for (let i = 0; i < lines.length; i++){
-    const [a, b, c] = lines[i];
+  for (let i = 0; i < lines.length; i++){ //.length permite contar cuantos arreglos existen (8)
+    const [a, b, c] = lines[i]; //Cada fila se representa por A, B y C si cumple alguno de los arreglos retorna el valor
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
