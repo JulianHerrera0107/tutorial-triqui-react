@@ -9,7 +9,7 @@ function Square({ value, onSquareClick }) {
 }
 
 export default function Board() {
-  const [xIsNext, setXIsNext] = useState(true);
+  const [xIsNext, setXIsNext] = useState(true); //Cuando el usuario presione el botón pasa a false
   const [squares, setSquares] = useState(Array(9).fill(null));
   
   function handleClick(i) { //Creación de un Closure para la función handleClick
@@ -24,7 +24,7 @@ export default function Board() {
       nextSquares[i] = "O";
     }
     setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    setXIsNext(!xIsNext); //! operador para cambiar el estado a false
   }
 
   const winner = calcularGanador(squares);
